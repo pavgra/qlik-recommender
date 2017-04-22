@@ -1,0 +1,82 @@
+/*
+* Create events
+* 
+* POST
+* http://54.159.100.138:7070/events.json?accessKey=CT3TNcBbZ4gMMBC0NUEoHUGaqqSFwR95DSN7wOjVlg6kALWwiE31mCee9Zk_nYQu
+*/
+
+// Create items
+
+{
+   "event" : "$set",
+   "entityType" : "item",
+   "entityId" : "query_user_f1_f2_f3",
+   "properties" : {
+      "category": ["user"],
+      "keywords": ["f1", "f2", "f3"]
+   },
+   "eventTime" : "2017-04-22T00:00:00.000Z"
+}
+
+{
+   "event" : "$set",
+   "entityType" : "item",
+   "entityId" : "query_user_f1_f2_f5",
+   "properties" : {
+      "category": ["user"],
+      "keywords": ["f1", "f2", "f5"]
+   },
+   "eventTime" : "2017-04-22T00:00:00.000Z"
+}
+
+{
+   "event" : "$set",
+   "entityType" : "item",
+   "entityId" : "query_user_f1_f5_f7",
+   "properties" : {
+      "category": ["user"],
+      "keywords": ["f1", "f5", "f7"]
+   },
+   "eventTime" : "2017-04-22T00:00:00.000Z"
+}
+
+// Send usage data
+
+{
+   "event" : "view",
+   "entityType" : "user",
+   "entityId" : "1",
+   "targetEntityType" : "item",
+   "targetEntityId" : "query_user_f1_f2_f3",
+   "properties" : {},
+   "eventTime" : "2017-04-22T01:00:00.000Z"
+}
+
+/*
+* Query recommendations
+*
+* POST
+* http://54.159.100.138:8000/queries.json
+*/
+
+// Get popular items
+{}
+
+// Get recommendations for user
+
+{
+  "user": "1",
+  "userBias": 2, // favor personal recommendations
+  "num": 3,
+  "fields": [
+    {
+      "name": "category"
+      "values": ["user"],
+      "bias": -1 // filter out all except mentioned category
+    },{
+      "name": "keywords",
+      "values": ["f2"]
+      "bias": 1.02 // boost/favor recommendations with the 'genre' = 'sci-fi' or 'detective'
+    }
+  ]
+}
