@@ -67,7 +67,7 @@
 {
   "user": "1",
   "userBias": 2, // favor personal recommendations
-  "num": 3,
+  "num": 10,
   "fields": [
     {
       "name": "category"

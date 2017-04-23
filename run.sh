@@ -16,7 +16,32 @@ pio app new qlick-recommender
 '
 
 # send some data
+# configure engine.json
 
 pio build # to update the engine
 pio train # to train a predictive model with training data
 nohup pio deploy & # to deploy the engine as a service to 8000 port
+
+# Setup Nginx as reverse-proxy to enable CORS
+
+: '
+sudo apt-get install nginx
+sudo apt-get install nginx-extras
+
+sudo nano /etc/nginx/sites-available/default
+
+# Set following config
+# server {
+#         listen 9090 default_server;
+#         listen [::]:9090 default_server;
+
+#         location / {
+#           add_header 'Access-Control-Allow-Origin' '*';
+# 			add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PUT, DELETE';
+# 			add_header 'Access-Control-Allow-Credentials' 'true';
+# 			add_header 'Access-Control-Allow-Headers' 'Origin,Content-Type,Accept';
+# 			proxy_pass http://localhost:8000;
+#         }
+# }
+
+'
