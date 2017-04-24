@@ -44,4 +44,6 @@ sudo nano /etc/nginx/sites-available/default
 #         }
 # }
 
+sudo service nginx restart
+
 '
